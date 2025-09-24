@@ -208,3 +208,30 @@ The backtesting system produces a master plot containing:
 - ✅ Comprehensive backtesting visualization shows strategy execution clearly
 - ✅ Multi-timeframe coordination works across various combinations
 - ✅ Production-ready system with complete testing using custom datasets
+
+---
+
+## 📝 Development Guidelines
+
+### File Execution Rules
+- **ALWAYS use absolute paths when running Python files**: `/home/lordargus/Tradient/strategy_builder/run_tests.py`
+- **Never assume current working directory**: Always verify with `pwd` first
+- **The working directory is**: `/home/lordargus/Tradient/strategy_builder`
+
+### Testing Requirements
+- **Every class and function MUST have corresponding tests** in the `tests/` directory
+- Maintain high test coverage for reliability
+- **Run tests using**: `python3 /home/lordargus/Tradient/strategy_builder/run_tests.py`
+
+### Code Development Process
+1. **Before writing code to a new file**:
+   - First write and explain the code in the CLI`
+   - Demonstrate functionality with examples
+   - Validate the approach before file creation
+2. **Single file development**:
+   - Create and complete ONE file at a time
+   - Ensure each file is fully tested before moving to the next
+   - Maintain focus and completeness
+
+### Architecture Notes
+- When developing the Strategy Builder, reference other Tradient repositories for patterns and conventions but make architectural decisions independently based on the specific requirements of this system.

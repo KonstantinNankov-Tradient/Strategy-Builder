@@ -92,8 +92,8 @@ class BosVisualizer:
         """
         default_config = {
             'symbol': self.symbol,
-            'base_strength': 5,
-            'min_gap': 3
+            'base_strength': 2,
+            'min_gap': 1
         }
 
         if config:

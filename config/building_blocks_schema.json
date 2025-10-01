@@ -1,0 +1,239 @@
+[
+  {
+    "id": "timeframe_daily",
+    "type": "timeframe",
+    "display_name": "Daily Timeframe",
+    "timeframe_value": "1d",
+    "premium": false,
+    "description": "Analyze indicators on daily candles",
+    "config": {}
+  },
+  {
+    "id": "timeframe_4h",
+    "type": "timeframe",
+    "display_name": "4-Hour Timeframe",
+    "timeframe_value": "4h",
+    "premium": false,
+    "description": "Analyze indicators on 4-hour candles",
+    "config": {}
+  },
+  {
+    "id": "timeframe_1h",
+    "type": "timeframe",
+    "display_name": "1-Hour Timeframe",
+    "timeframe_value": "1h",
+    "premium": false,
+    "description": "Analyze indicators on 1-hour candles",
+    "config": {}
+  },
+  {
+    "id": "timeframe_15m",
+    "type": "timeframe",
+    "display_name": "15-Minute Timeframe",
+    "timeframe_value": "15min",
+    "premium": true,
+    "description": "Analyze indicators on 15-minute candles",
+    "config": {}
+  },
+  {
+    "id": "timeframe_5m",
+    "type": "timeframe",
+    "display_name": "5-Minute Timeframe",
+    "timeframe_value": "5min",
+    "premium": true,
+    "description": "Analyze indicators on 5-minute candles",
+    "config": {}
+  },
+  {
+    "id": "timeframe_1m",
+    "type": "timeframe",
+    "display_name": "1-Minute Timeframe",
+    "timeframe_value": "1min",
+    "premium": false,
+    "description": "Analyze indicators on 1-minute candles",
+    "config": {}
+  },
+  {
+    "id": "timeframe_custom",
+    "type": "timeframe",
+    "display_name": "Custom Timeframe",
+    "timeframe_value": "custom",
+    "premium": true,
+    "description": "Define a custom timeframe interval",
+    "config": {
+      "custom_interval": {
+        "type": "string",
+        "display_name": "Custom Interval",
+        "description": "Enter custom timeframe (e.g., '2h', '30min')",
+        "required": true,
+        "default": "",
+        "placeholder": "e.g., 2h, 30min",
+        "validation": {
+          "pattern": "^\\d+(min|h|d|w)$",
+          "error_message": "Format: number + min/h/d/w (e.g., 2h, 30min)"
+        }
+      }
+    }
+  },
+  {
+    "id": "bos_detector",
+    "type": "indicator",
+    "display_name": "Break of Structure (BOS)",
+    "description": "Detects trend continuations when price breaks swing highs/lows with body closes in the same trend direction.",
+    "config": {
+      "direction": {
+        "type": "select",
+        "display_name": "Direction",
+        "description": "Select the BOS direction to detect",
+        "required": true,
+        "default": "None",
+        "options": [
+          { "value": "bullish", "label": "Bullish", "description": "Detect bullish break of structure" },
+          { "value": "bearish", "label": "Bearish", "description": "Detect bearish break of structure" }
+        ]
+      },
+      "timeframe": "None"
+    }
+  },
+  {
+    "id": "fvg_detector",
+    "type": "indicator",
+    "display_name": "Fair Value Gap (FVG)",
+    "description": "Detects price imbalances that occur when there's a gap between three consecutive candles, with dynamic mitigation and shrinking tracking.",
+    "config": {
+      "direction": {
+        "type": "select",
+        "display_name": "Direction",
+        "description": "Select the FVG direction to detect",
+        "required": true,
+        "default": "None",
+        "options": [
+          { "value": "bullish", "label": "Bullish", "description": "Detect bullish fair value gaps" },
+          { "value": "bearish", "label": "Bearish", "description": "Detect bearish fair value gaps" }
+        ]
+      },
+      "type": {
+        "type": "select",
+        "display_name": "Type",
+        "description": "Select the FVG mitigation type",
+        "required": true,
+        "default": "None",
+        "options": [
+          { "value": "mitigated", "label": "Mitigated", "description": "Detect only mitigated FVGs" },
+          { "value": "unmitigated", "label": "Unmitigated", "description": "Detect only unmitigated FVGs" },
+          { "value": "50_percent", "label": "50% Level", "description": "Detect FVGs at 50% mitigation level" }
+        ]
+      },
+      "timeframe": "None"
+    }
+  },
+  {
+    "id": "order_block_detector",
+    "type": "indicator",
+    "display_name": "Order Block",
+    "description": "Detects institutional supply and demand zones based on swing breakouts with volume analysis and mitigation tracking.",
+    "config": {
+      "direction": {
+        "type": "select",
+        "display_name": "Direction",
+        "description": "Select the Order Block direction to detect",
+        "required": true,
+        "default": "None",
+        "options": [
+          { "value": "bullish", "label": "Bullish", "description": "Detect bullish order blocks (demand zones)" },
+          { "value": "bearish", "label": "Bearish", "description": "Detect bearish order blocks (supply zones)" }
+        ]
+      },
+      "type": {
+        "type": "select",
+        "display_name": "Type",
+        "description": "Select the Order Block mitigation type",
+        "required": true,
+        "default": "None",
+        "options": [
+          { "value": "mitigated", "label": "Mitigated", "description": "Detect only mitigated order blocks" },
+          { "value": "unmitigated", "label": "Unmitigated", "description": "Detect only unmitigated order blocks" },
+          { "value": "50_percent", "label": "50% Level", "description": "Detect order blocks at 50% mitigation level" }
+        ]
+      },
+      "timeframe": "None"
+    }
+  },
+  {
+    "id": "liquidity_grab_detector",
+    "type": "indicator",
+    "display_name": "Liquidity Grab",
+    "description": "Detects liquidity grabs by sweeping swing highs/lows or session highs/lows, with optional wick extension filter.",
+    "config": {
+      "mode": {
+        "type": "select",
+        "display_name": "Mode",
+        "description": "Select Liquidity Grab detection mode",
+        "required": true,
+        "default": "None",
+        "options": [
+          { "value": "swings", "label": "Swings", "description": "Detect liquidity grabs around swing highs/lows" },
+          { "value": "sessions", "label": "Sessions", "description": "Detect liquidity grabs around session highs/lows" }
+        ]
+      },
+      "swings": {
+        "type": "group",
+        "display_name": "Swings Configuration",
+        "description": "Configure liquidity grab detection for swings",
+        "visibility_condition": { "field": "mode", "equals": "swings" },
+        "config": {
+          "side": {
+            "type": "select",
+            "display_name": "Swing Side",
+            "description": "Detect above swing highs or below swing lows",
+            "required": true,
+            "default": "None",
+            "options": [
+              { "value": "swing_highs", "label": "Swing Highs", "description": "Most recent grab above swing highs" },
+              { "value": "swing_lows", "label": "Swing Lows", "description": "Most recent grab below swing lows" }
+            ]
+          }
+        }
+      },
+      "sessions": {
+        "type": "group",
+        "display_name": "Sessions Configuration",
+        "description": "Configure liquidity grab detection for sessions",
+        "visibility_condition": { "field": "mode", "equals": "sessions" },
+        "config": {
+          "sessions": {
+            "type": "multiselect",
+            "display_name": "Reference Sessions",
+            "description": "Select sessions whose highs/lows will be used for detection",
+            "required": false,
+            "default": ["asian", "london", "newyork"],
+            "options": [
+              { "value": "asian", "label": "Asian Session" },
+              { "value": "london", "label": "London Session" },
+              { "value": "newyork", "label": "New York Session" }
+            ]
+          },
+          "side": {
+            "type": "select",
+            "display_name": "Session Side",
+            "description": "Detect against session highs or lows",
+            "required": true,
+            "default": "None",
+            "options": [
+              { "value": "highs", "label": "Session Highs" },
+              { "value": "lows", "label": "Session Lows" }
+            ]
+          }
+        }
+      },
+      "minimum_wick_extension": {
+        "type": "number",
+        "display_name": "Minimum Wick Extension (pips)",
+        "description": "Optional: minimum wick extension in pips required to count as liquidity grab",
+        "required": false,
+        "default": 0
+      },
+      "timeframe": "None"
+    }
+  }
+]

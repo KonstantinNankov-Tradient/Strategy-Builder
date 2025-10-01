@@ -5,11 +5,17 @@ Tests the JSON schema validation, processing utilities, conversion layer,
 and error handling for multi-timeframe strategy configurations.
 """
 
+import sys
+import os
+from pathlib import Path
+
+# Add project root to path
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
 import unittest
 import json
 import tempfile
-import os
-from pathlib import Path
 from typing import Dict, Any
 import logging
 

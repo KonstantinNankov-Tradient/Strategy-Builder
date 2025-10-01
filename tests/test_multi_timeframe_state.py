@@ -5,6 +5,14 @@ Tests the multi-timeframe state system, including state coordination,
 synchronization, detection handling, and cross-timeframe validation.
 """
 
+import sys
+import os
+from pathlib import Path
+
+# Add project root to path
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
+
 import unittest
 from unittest.mock import Mock, patch
 from datetime import datetime, timedelta

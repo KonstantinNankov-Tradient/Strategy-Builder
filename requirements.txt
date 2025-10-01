@@ -1,0 +1,17 @@
+pandas
+numpy
+plotly
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+pydantic-settings
+sqlalchemy
+psycopg2-binary
+alembic
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+pytest
+httpx
+email-validator

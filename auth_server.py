@@ -250,6 +250,50 @@ async def get_example_strategy():
     return example_strategy
 
 
+@app.get("/api/building-blocks", response_model=List[Dict[str, Any]])
+async def get_building_blocks():
+    """
+    Get the building blocks schema for the strategy builder.
+
+    Returns the complete schema of available timeframes and indicators
+    that can be used in the visual strategy builder.
+    """
+    try:
+        schema_path = project_root / "config" / "building_blocks_schema.json"
+
+        if not schema_path.exists():
+            logger.error(f"Building blocks schema not found at: {schema_path}")
+            raise HTTPException(
+                status_code=404,
+                detail="Building blocks schema file not found"
+            )
+
+        with open(schema_path, 'r') as f:
+            building_blocks = json.load(f)
+
+        logger.info(f"Loaded {len(building_blocks)} building blocks from schema")
+        return building_blocks
+
+    except json.JSONDecodeError as e:
+        logger.error(f"Invalid JSON in building blocks schema: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "error": "Invalid building blocks schema format",
+                "details": str(e)
+            }
+        )
+    except Exception as e:
+        logger.error(f"Error loading building blocks schema: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "error": "Failed to load building blocks schema",
+                "details": str(e)
+            }
+        )
+
+
 @app.get("/api/strategies/{strategy_id}", response_model=Dict[str, Any])
 async def get_strategy(
     strategy_id: int,

@@ -1,5 +1,143 @@
 [
   {
+    "id": "forex_market",
+    "type": "market",
+    "display_name": "Forex Market",
+    "description": "Select the forex markets to include in the strategy.",
+    "config": {
+      "mode": {
+        "type": "select",
+        "display_name": "Market Mode",
+        "description": "Choose which forex markets to trade",
+        "required": true,
+        "default": "None",
+        "options": [
+          {
+            "value": "majors",
+            "label": "All Major Pairs",
+            "description": "Includes the 7 major forex pairs (EURUSD, GBPUSD, USDJPY, USDCHF, USDCAD, AUDUSD, NZDUSD)"
+          },
+          {
+            "value": "minors",
+            "label": "All Minor Pairs",
+            "description": "Includes 23 minor forex pairs (non-USD crosses)"
+          },
+          {
+            "value": "custom",
+            "label": "Select Individual Pairs",
+            "description": "Manually select one or more forex pairs"
+          }
+        ]
+      },
+      "custom_pairs": {
+        "type": "multiselect",
+        "display_name": "Custom Pairs",
+        "description": "Select individual forex pairs",
+        "required": true,
+        "default": [],
+        "options": [
+          { "value": "AUDCAD", "label": "AUD/CAD" },
+          { "value": "AUDCHF", "label": "AUD/CHF" },
+          { "value": "AUDJPY", "label": "AUD/JPY" },
+          { "value": "AUDNZD", "label": "AUD/NZD" },
+          { "value": "AUDSGD", "label": "AUD/SGD" },
+          { "value": "AUDUSD", "label": "AUD/USD" },
+          { "value": "CADCHF", "label": "CAD/CHF" },
+          { "value": "CADJPY", "label": "CAD/JPY" },
+          { "value": "CHFHUF", "label": "CHF/HUF" },
+          { "value": "CHFJPY", "label": "CHF/JPY" },
+          { "value": "CHFPLN", "label": "CHF/PLN" },
+          { "value": "CHFSEK", "label": "CHF/SEK" },
+          { "value": "CHFZAR", "label": "CHF/ZAR" },
+          { "value": "DKKNOK", "label": "DKK/NOK" },
+          { "value": "DKKSEK", "label": "DKK/SEK" },
+          { "value": "EURAUD", "label": "EUR/AUD" },
+          { "value": "EURCAD", "label": "EUR/CAD" },
+          { "value": "EURCHF", "label": "EUR/CHF" },
+          { "value": "EURCZK", "label": "EUR/CZK" },
+          { "value": "EURDKK", "label": "EUR/DKK" },
+          { "value": "EURGBP", "label": "EUR/GBP" },
+          { "value": "EURHKD", "label": "EUR/HKD" },
+          { "value": "EURHUF", "label": "EUR/HUF" },
+          { "value": "EURJPY", "label": "EUR/JPY" },
+          { "value": "EURMXN", "label": "EUR/MXN" },
+          { "value": "EURNOK", "label": "EUR/NOK" },
+          { "value": "EURNZD", "label": "EUR/NZD" },
+          { "value": "EURPLN", "label": "EUR/PLN" },
+          { "value": "EURSEK", "label": "EUR/SEK" },
+          { "value": "EURSGD", "label": "EUR/SGD" },
+          { "value": "EURUSD", "label": "EUR/USD" },
+          { "value": "GBPAUD", "label": "GBP/AUD" },
+          { "value": "GBPCAD", "label": "GBP/CAD" },
+          { "value": "GBPCHF", "label": "GBP/CHF" },
+          { "value": "GBPHKD", "label": "GBP/HKD" },
+          { "value": "GBPJPY", "label": "GBP/JPY" },
+          { "value": "GBPNOK", "label": "GBP/NOK" },
+          { "value": "GBPNZD", "label": "GBP/NZD" },
+          { "value": "GBPSGD", "label": "GBP/SGD" },
+          { "value": "GBPUSD", "label": "GBP/USD" },
+          { "value": "MXNJPY", "label": "MXN/JPY" },
+          { "value": "NOKJPY", "label": "NOK/JPY" },
+          { "value": "NOKSEK", "label": "NOK/SEK" },
+          { "value": "NZDCAD", "label": "NZD/CAD" },
+          { "value": "NZDCHF", "label": "NZD/CHF" },
+          { "value": "NZDJPY", "label": "NZD/JPY" },
+          { "value": "NZDSGD", "label": "NZD/SGD" },
+          { "value": "NZDUSD", "label": "NZD/USD" },
+          { "value": "SGDJPY", "label": "SGD/JPY" },
+          { "value": "USDCAD", "label": "USD/CAD" },
+          { "value": "USDCHF", "label": "USD/CHF" },
+          { "value": "USDCNH", "label": "USD/CNH" },
+          { "value": "USDCZK", "label": "USD/CZK" },
+          { "value": "USDDKK", "label": "USD/DKK" },
+          { "value": "USDHKD", "label": "USD/HKD" },
+          { "value": "USDHUF", "label": "USD/HUF" },
+          { "value": "USDJPY", "label": "USD/JPY" },
+          { "value": "USDMXN", "label": "USD/MXN" },
+          { "value": "USDNOK", "label": "USD/NOK" },
+          { "value": "USDPLN", "label": "USD/PLN" },
+          { "value": "USDSEK", "label": "USD/SEK" },
+          { "value": "USDSGD", "label": "USD/SGD" },
+          { "value": "USDZAR", "label": "USD/ZAR" },
+          { "value": "USDKRW", "label": "USD/KRW" }
+        ],
+        "visibility_condition": { "field": "mode", "equals": "custom" }
+      }
+    }
+  },
+  {
+    "id": "start_block",
+    "type": "config",
+    "display_name": "Start Block",
+    "description": "Defines the starting configuration for the strategy, including trade direction.",
+    "config": {
+      "direction": {
+        "type": "select",
+        "display_name": "Direction",
+        "description": "Select trade direction for the strategy",
+        "required": true,
+        "default": "None",
+        "options": [
+          {
+            "value": "long_short",
+            "label": "Long & Short",
+            "description": "Trade both directions (long in reverse)"
+          },
+          {
+            "value": "long",
+            "label": "Long",
+            "description": "Trade only long positions"
+          },
+          {
+            "value": "short",
+            "label": "Short",
+            "description": "Trade only short positions"
+          }
+        ]
+      }
+    }
+  },
+  {
     "id": "timeframe_daily",
     "type": "timeframe",
     "display_name": "Daily Timeframe",
@@ -234,6 +372,359 @@
         "default": 0
       },
       "timeframe": "None"
+    }
+  },
+  {
+    "id": "entry",
+    "type": "entry",
+    "display_name": "Entry",
+    "description": "Defines how trade entries should be executed (market or indicator-based limit orders).",
+    "config": {
+      "entry_type": {
+        "type": "select",
+        "display_name": "Entry Type",
+        "description": "Select entry method",
+        "required": true,
+        "default": "None",
+        "options": [
+          { "value": "market_order", "label": "Market Order", "description": "Enter immediately at market price" },
+          { "value": "limit_order", "label": "Limit Order", "description": "Enter using indicator-based price levels" }
+        ]
+      },
+      "limit_order": {
+        "type": "group",
+        "display_name": "Limit Order Configuration",
+        "description": "Configure limit order entry rules (indicator-based only)",
+        "visibility_condition": { "field": "entry_type", "equals": "limit_order" },
+        "config": {
+          "indicator": {
+            "type": "select",
+            "display_name": "Indicator",
+            "description": "Choose indicator from the strategy (with timeframe context)",
+            "required": true,
+            "default": "None",
+            "options": []
+          },
+          "indicator_value": {
+            "type": "select",
+            "display_name": "Indicator Value",
+            "description": "Choose reference level from the selected indicator",
+            "required": true,
+            "default": "None",
+            "options": [],
+            "visibility_condition": {
+              "field": "indicator",
+              "in": ["fvg_detector", "order_block_detector"]
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "risk_management",
+    "type": "risk_management",
+    "display_name": "Risk Management",
+    "description": "Defines stop loss, position sizing, take profit, and break even rules.",
+    "config": {
+      "stop_loss": {
+        "type": "group",
+        "display_name": "Stop Loss Rules",
+        "description": "Configure stop loss placement",
+        "config": {
+          "mode": {
+            "type": "select",
+            "display_name": "Stop Loss Mode",
+            "description": "Choose how stop loss is defined",
+            "required": true,
+            "default": "None",
+            "options": [
+              { "value": "fixed_pips", "label": "Fixed Pips", "description": "Set a fixed pip distance for stop loss" },
+              { "value": "swing_hl", "label": "Most Recent Swing H&L", "description": "Stop loss based on most recent swing high/low" },
+              { "value": "indicator", "label": "Indicator", "description": "Stop loss based on indicator value" }
+            ]
+          },
+          "fixed_pips": {
+            "type": "number",
+            "display_name": "Fixed Pips",
+            "description": "Stop loss distance in pips",
+            "required": false,
+            "default": 0,
+            "visibility_condition": { "field": "mode", "equals": "fixed_pips" }
+          },
+          "indicator": {
+            "type": "group",
+            "display_name": "Indicator Stop Loss",
+            "description": "Use indicator-based levels for stop loss",
+            "visibility_condition": { "field": "mode", "equals": "indicator" },
+            "config": {
+              "indicator": {
+                "type": "select",
+                "display_name": "Indicator",
+                "description": "Choose indicator from the strategy (with timeframe context)",
+                "required": true,
+                "default": "None",
+                "options": []
+              },
+              "indicator_value": {
+                "type": "select",
+                "display_name": "Indicator Value",
+                "description": "Choose reference level from the selected indicator",
+                "required": true,
+                "default": "None",
+                "options": [],
+                "visibility_condition": {
+                  "field": "indicator",
+                  "in": ["fvg_detector", "order_block_detector"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "position_sizing": {
+        "type": "group",
+        "display_name": "Position Sizing",
+        "description": "Configure how trade size is calculated",
+        "config": {
+          "mode": {
+            "type": "select",
+            "display_name": "Sizing Mode",
+            "description": "Choose position sizing method",
+            "required": true,
+            "default": "None",
+            "options": [
+              { "value": "fixed_lotsize", "label": "Fixed Lotsize", "description": "Trade fixed lot size" },
+              { "value": "percent_balance", "label": "% of Balance", "description": "Risk a percentage of account balance" }
+            ]
+          },
+          "fixed_lotsize": {
+            "type": "number",
+            "display_name": "Lotsize",
+            "description": "Enter fixed lotsize",
+            "required": false,
+            "default": 0,
+            "visibility_condition": { "field": "mode", "equals": "fixed_lotsize" }
+          },
+          "percent_balance": {
+            "type": "group",
+            "display_name": "% of Balance",
+            "description": "Risk a percentage of account balance",
+            "visibility_condition": { "field": "mode", "equals": "percent_balance" },
+            "config": {
+              "percent": {
+                "type": "number",
+                "display_name": "Risk % per Trade",
+                "description": "Percentage of balance risked per trade",
+                "required": true,
+                "default": 0
+              },
+              "balance_type": {
+                "type": "select",
+                "display_name": "Balance Reference",
+                "description": "Choose whether to calculate risk on starting balance or current balance",
+                "required": true,
+                "default": "None",
+                "options": [
+                  { "value": "starting_balance", "label": "Starting Balance" },
+                  { "value": "current_balance", "label": "Current Balance" }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "take_profit": {
+        "type": "group",
+        "display_name": "Take Profit Rules",
+        "description": "Configure take profit levels",
+        "config": {
+          "mode": {
+            "type": "select",
+            "display_name": "TP Mode",
+            "description": "Choose take profit rule",
+            "required": true,
+            "default": "None",
+            "options": [
+              { "value": "rr_ratio", "label": "Risk to Reward Ratio", "description": "Set take profit as a multiple of risk" }
+            ]
+          },
+          "rr_ratio": {
+            "type": "number",
+            "display_name": "Risk to Reward Ratio",
+            "description": "Take profit = stop loss distance × ratio",
+            "required": false,
+            "default": 0,
+            "visibility_condition": { "field": "mode", "equals": "rr_ratio" }
+          }
+        }
+      },
+      "break_even": {
+        "type": "group",
+        "display_name": "Break Even",
+        "description": "Configure break-even rules",
+        "config": {
+          "mode": {
+            "type": "select",
+            "display_name": "Break Even Mode",
+            "description": "Choose break-even trigger",
+            "required": true,
+            "default": "None",
+            "options": [
+              { "value": "fixed_r", "label": "Fixed R", "description": "Move stop to breakeven after reaching X R" },
+              { "value": "indicator", "label": "Indicator", "description": "Move stop to breakeven based on indicator level" }
+            ]
+          },
+          "fixed_r": {
+            "type": "number",
+            "display_name": "Fixed R",
+            "description": "Number of R multiples before moving stop to breakeven",
+            "required": false,
+            "default": 0,
+            "visibility_condition": { "field": "mode", "equals": "fixed_r" }
+          },
+          "indicator": {
+            "type": "select",
+            "display_name": "Indicator",
+            "description": "Select indicator for break-even reference",
+            "required": false,
+            "default": "None",
+            "options": [
+              { "value": "bos", "label": "Break of Structure (BOS)" }
+            ],
+            "visibility_condition": { "field": "mode", "equals": "indicator" }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "restrictions",
+    "type": "restrictions",
+    "display_name": "Restrictions",
+    "description": "Defines when new trades can or cannot be opened, forced closures, and maximum limits.",
+    "config": {
+      "no_new_trades": {
+        "type": "group",
+        "display_name": "No New Trades During",
+        "description": "Prevent opening new trades during specific conditions",
+        "config": {
+          "sessions": {
+            "type": "multiselect",
+            "display_name": "Restricted Sessions",
+            "description": "Block entries during selected trading sessions",
+            "required": false,
+            "default": [],
+            "options": [
+              { "value": "asian", "label": "Asian Session" },
+              { "value": "london", "label": "London Session" },
+              { "value": "newyork", "label": "New York Session" }
+            ]
+          },
+          "week_restrictions": {
+            "type": "multiselect",
+            "display_name": "Weekly Restrictions",
+            "description": "Restrict entries near start/end of week",
+            "required": false,
+            "default": [],
+            "options": [
+              { "value": "friday_evening", "label": "Friday Evening (last 4h)" },
+              { "value": "sunday_evening", "label": "Sunday Evening (first 4h)" }
+            ]
+          },
+          "rollover": {
+            "type": "boolean",
+            "display_name": "Market Rollover Restriction",
+            "description": "Block entries 1 hour before and after market rollover",
+            "required": false,
+            "default": false
+          }
+        }
+      },
+      "close_all_trades": {
+        "type": "group",
+        "display_name": "Close All Trades",
+        "description": "Force close trades under certain conditions",
+        "config": {
+          "before_session_end": {
+            "type": "boolean",
+            "display_name": "Before End of Session",
+            "description": "Close trades before selected session ends",
+            "required": false,
+            "default": false
+          },
+          "before_rollover": {
+            "type": "boolean",
+            "display_name": "Before Market Rollover",
+            "description": "Close trades 1 hour before market rollover",
+            "required": false,
+            "default": false
+          },
+          "weekend": {
+            "type": "boolean",
+            "display_name": "Weekend",
+            "description": "Close trades before market close on Friday",
+            "required": false,
+            "default": false
+          }
+        }
+      },
+      "maximums": {
+        "type": "group",
+        "display_name": "Maximums",
+        "description": "Define limits on trades and losses",
+        "config": {
+          "max_trades": {
+            "type": "group",
+            "display_name": "Maximum Trades",
+            "description": "Set limits on the number of trades",
+            "config": {
+              "per_day": {
+                "type": "number",
+                "display_name": "Per Day",
+                "description": "Maximum trades allowed per day",
+                "required": false,
+                "default": 0
+              },
+              "per_week": {
+                "type": "number",
+                "display_name": "Per Week",
+                "description": "Maximum trades allowed per week",
+                "required": false,
+                "default": 0
+              },
+              "per_session": {
+                "type": "number",
+                "display_name": "Per Session",
+                "description": "Maximum trades allowed per session",
+                "required": false,
+                "default": 0
+              }
+            }
+          },
+          "max_loss": {
+            "type": "group",
+            "display_name": "Maximum Loss",
+            "description": "Set limits on maximum losses",
+            "config": {
+              "losing_trades": {
+                "type": "number",
+                "display_name": "Max Losing Trades",
+                "description": "Maximum number of consecutive losing trades allowed",
+                "required": false,
+                "default": 0
+              },
+              "balance_lost": {
+                "type": "number",
+                "display_name": "Max Balance Lost (%)",
+                "description": "Maximum percentage of balance that can be lost",
+                "required": false,
+                "default": 0
+              }
+            }
+          }
+        }
+      }
     }
   }
 ]
